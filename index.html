@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monte Vista Boys Volleyball Fundraiser</title>
+<link rel="icon" href="assets/mv-logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+figure{margin:0}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%}
+.fine{font-size:.8rem;opacity:.7}
+.qr{display:flex;gap:16px;flex-wrap:wrap}
+.qr-card{flex:1 1 140px;max-width:220px;text-align:center}
+.qr-card figcaption{display:flex;flex-direction:column;margin-top:8px;font-size:.9rem}
+.qr-card figcaption span{opacity:.75;word-break:break-all}
+.qr-note{font-size:.85rem;opacity:.75}
+
+body{font-family:'Roboto Condensed',sans-serif;background:#1a1a1a;color:#f2f2f2}
+h1,h2,h3{font-family:Orbitron,sans-serif;text-transform:uppercase;margin:0 0 .5em;letter-spacing:.04em}
+h2{color:#ffcf3f;font-size:1.4rem}
+.wrap{max-width:1100px;margin:auto;padding:48px 16px}
+.board{max-width:1100px;margin:24px auto;background:#050505;border:10px solid #333;border-radius:14px;padding:24px 16px;box-shadow:inset 0 0 40px #000,0 10px 40px #000a}
+.board-top{display:flex;align-items:center;justify-content:center;gap:16px;text-align:center}.board-top img{width:70px}
+.board h1{font-size:clamp(1.2rem,3.5vw,2.2rem);color:#fff}
+.score{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin:24px 0;text-align:center}
+.score label{display:block;font-family:Orbitron;font-size:.8rem;color:#C8102E;letter-spacing:.2em}
+.led{font-family:Orbitron;font-weight:900;font-size:clamp(2rem,7vw,4.5rem);color:#ff2a44;text-shadow:0 0 12px #ff2a44,0 0 30px #C8102E;background:#120004;padding:8px 16px;border-radius:8px;display:inline-block}
+.led.amber{color:#ffcf3f;text-shadow:0 0 12px #ffcf3f;background:#140f00}
+.vs{font-family:Orbitron;font-size:1.2rem;opacity:.6}
+.periods{display:flex;justify-content:center;gap:28px;font-family:Orbitron;font-size:.8rem;flex-wrap:wrap}.periods b{display:block;font-size:1.6rem;color:#ffcf3f}
+.progress-track{height:14px;background:#222;border:2px solid #444;margin:8px 0}.progress-fill{height:100%;background:repeating-linear-gradient(90deg,#ff2a44 0 10px,#C8102E 10px 14px)}.progress-nums,.progress-meta{display:none}
+.nav{display:flex;justify-content:center;gap:4px;flex-wrap:wrap;margin-top:18px}.nav a{font-family:Orbitron;font-size:.7rem;padding:8px 12px;background:#222;text-decoration:none;border-radius:4px}.nav a:hover{background:#C8102E}
+.donate{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.amounts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}.amounts-btn{font-family:Orbitron;text-align:center;background:#C8102E;padding:14px 0;text-decoration:none;border-radius:6px;border-bottom:4px solid #7a0a1c}
+.qr-card{background:#0a0a0a;padding:12px;border:2px solid #333;border-radius:8px}
+.uses{list-style:none;padding:0}.uses li{display:flex;gap:14px;padding:12px;background:#222;margin-bottom:8px;border-radius:6px}.uses-pct{font-family:Orbitron;color:#ffcf3f;min-width:64px;font-size:1.3rem}.uses p{margin:0;opacity:.7;font-size:.9rem}
+.coaches{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.coaches-card{background:#222;border-radius:8px;overflow:hidden;display:flex}.coaches-photo{background:#C8102E;padding:16px;display:grid;place-items:center}.coaches-photo img{width:54px}.coaches-body{padding:14px}.coaches-role{color:#ffcf3f;font-size:.85rem}.coaches-body p{font-size:.85rem;opacity:.7;margin:.4em 0 0}
+.roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}.roster-card{background:#050505;border:2px solid #333;border-radius:8px;padding:12px;text-align:center}.roster-num{font-family:Orbitron;font-weight:900;font-size:2.4rem;color:#ff2a44;text-shadow:0 0 10px #ff2a44}.roster-pos{font-size:.75rem;opacity:.6}
+.sched{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.sched li{display:flex;gap:12px;background:#050505;border:2px solid #333;border-radius:8px;padding:12px}.sched li.home{border-color:#C8102E}
+.sched-date{font-family:Orbitron;color:#ffcf3f;text-align:center;min-width:50px}.sched-date span{display:block;font-size:.7rem}.sched-date b{font-size:1.5rem}.sched-info{display:flex;flex-direction:column}.sched-info span{font-size:.8rem;opacity:.6}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.gallery figure{border:4px solid #333;border-radius:6px;overflow:hidden}.gallery img{aspect-ratio:16/10;object-fit:cover}.gallery figcaption{font-family:Orbitron;font-size:.65rem;padding:6px;background:#050505}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}.tiers-card{background:#222;border-radius:8px;padding:14px;border-top:4px solid #ffcf3f}.tiers-amt{font-family:Orbitron;color:#ff2a44}.tiers-card p{font-size:.85rem;opacity:.8}
+.sponsors{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}.sponsors img{border-radius:6px}
+.footer{display:flex;gap:16px;max-width:1100px;margin:auto;padding:24px 16px;align-items:center;border-top:2px solid #333}.footer p{margin:.2em 0}
+@media(max-width:760px){.donate{grid-template-columns:1fr}.gallery{grid-template-columns:1fr 1fr}.score{grid-template-columns:1fr}.vs{display:none}}
+</style>
+</head>
+<body>
+
+<section class="board" id="donate">
+ <div class="board-top"><img src="assets/mv-logo.svg" alt="Monte Vista logo"><h1>Mustangs Fundraiser<br>2027 Season</h1><img src="assets/volleyball.svg" alt=""></div>
+ <div class="score"><div><label>RAISED</label><span class="led">6,250</span></div><div class="vs">OF</div><div><label>GOAL</label><span class="led amber">15,000</span></div></div>
+ 
+<div class="progress" role="img" aria-label="$6,250 raised of $15,000 goal">
+  <div class="progress-nums"><strong>$6,250</strong> raised of $15,000 goal</div>
+  <div class="progress-track"><div class="progress-fill" style="width:42%"></div></div>
+  <div class="progress-meta">42% funded · 48 donors</div>
+</div>
+ <div class="periods"><div>DONORS<b>48</b></div><div>FUNDED<b>42%</b></div><div>SET<b>1</b></div></div>
+ <nav class="nav"><a href="#team">Team</a><a href="#coaches">Coaches</a><a href="#schedule">Schedule</a><a href="#photos">Photos</a><a href="#sponsors">Sponsors</a></nav>
+</section>
+<section class="wrap"><div class="donate"><div><h2>Pick your play</h2><div class="amounts"><a class="amounts-btn" href="#donate">$25</a><a class="amounts-btn" href="#donate">$50</a><a class="amounts-btn" href="#donate">$100</a><a class="amounts-btn" href="#donate">$250</a><a class="amounts-btn" href="#donate">$500</a><a class="amounts-btn" href="#donate">Other</a></div><ul class="uses"><li><span class="uses-pct">35%</span><div><strong>Tournament fees</strong><p>Entry into invitationals and travel tournaments.</p></div></li><li><span class="uses-pct">25%</span><div><strong>Uniforms & gear</strong><p>Jerseys, warmups and knee pads for every player.</p></div></li><li><span class="uses-pct">20%</span><div><strong>Equipment</strong><p>New match balls, ball carts and training tools.</p></div></li><li><span class="uses-pct">20%</span><div><strong>Travel</strong><p>Bus rides and meals for away tournaments.</p></div></li></ul></div><div><h2>Scan to give</h2>
+<div class="qr">
+  <figure class="qr-card">
+    <img src="assets/qr-venmo.svg" alt="Venmo QR code (placeholder)">
+    <figcaption><strong>Venmo</strong><span>@MV-Boys-Volleyball</span></figcaption>
+  </figure>
+  <figure class="qr-card">
+    <img src="assets/qr-zelle.svg" alt="Zelle QR code (placeholder)">
+    <figcaption><strong>Zelle</strong><span>mvboysvolleyball@example.com</span></figcaption>
+  </figure>
+</div>
+<p class="qr-note">Please add “MV Boys Volleyball” and your name in the payment note.</p></div></div></section>
+<section class="wrap" id="coaches"><h2>Coaching staff</h2><div class="coaches"><article class="coaches-card"><div class="coaches-photo"><img src="assets/mv-logo.svg" alt=""></div><div class="coaches-body"><h3>Coach Name</h3><div class="coaches-role">Head Coach</div><p>Leads the varsity program. Bio coming soon.</p></div></article><article class="coaches-card"><div class="coaches-photo"><img src="assets/mv-logo.svg" alt=""></div><div class="coaches-body"><h3>Coach Name</h3><div class="coaches-role">Assistant Coach</div><p>Works with hitters and blockers. Bio coming soon.</p></div></article><article class="coaches-card"><div class="coaches-photo"><img src="assets/mv-logo.svg" alt=""></div><div class="coaches-body"><h3>Coach Name</h3><div class="coaches-role">JV Head Coach</div><p>Develops the next wave of Mustangs. Bio coming soon.</p></div></article></div></section>
+<section class="wrap" id="team"><h2>Starting lineup &amp; bench</h2><div class="roster"><div class="roster-card"><div class="roster-num">1</div><div class="roster-name">Player Name</div><div class="roster-pos">Outside Hitter · Sr</div></div><div class="roster-card"><div class="roster-num">2</div><div class="roster-name">Player Name</div><div class="roster-pos">Middle Blocker · Sr</div></div><div class="roster-card"><div class="roster-num">3</div><div class="roster-name">Player Name</div><div class="roster-pos">Setter · Jr</div></div><div class="roster-card"><div class="roster-num">4</div><div class="roster-name">Player Name</div><div class="roster-pos">Opposite · Sr</div></div><div class="roster-card"><div class="roster-num">5</div><div class="roster-name">Player Name</div><div class="roster-pos">Libero · Jr</div></div><div class="roster-card"><div class="roster-num">6</div><div class="roster-name">Player Name</div><div class="roster-pos">Defensive Specialist · So</div></div><div class="roster-card"><div class="roster-num">7</div><div class="roster-name">Player Name</div><div class="roster-pos">Outside Hitter · Jr</div></div><div class="roster-card"><div class="roster-num">8</div><div class="roster-name">Player Name</div><div class="roster-pos">Middle Blocker · Sr</div></div><div class="roster-card"><div class="roster-num">9</div><div class="roster-name">Player Name</div><div class="roster-pos">Outside Hitter · So</div></div><div class="roster-card"><div class="roster-num">10</div><div class="roster-name">Player Name</div><div class="roster-pos">Setter · Jr</div></div><div class="roster-card"><div class="roster-num">11</div><div class="roster-name">Player Name</div><div class="roster-pos">Middle Blocker · Jr</div></div><div class="roster-card"><div class="roster-num">12</div><div class="roster-name">Player Name</div><div class="roster-pos">Opposite · So</div></div><div class="roster-card"><div class="roster-num">14</div><div class="roster-name">Player Name</div><div class="roster-pos">Libero · Sr</div></div><div class="roster-card"><div class="roster-num">15</div><div class="roster-name">Player Name</div><div class="roster-pos">Outside Hitter · Fr</div></div></div></section>
+<section class="wrap" id="schedule"><h2>Match schedule</h2><ul class="sched"><li class="home"><div class="sched-date"><span>Feb</span><b>23</b></div><div class="sched-info"><strong>vs. Granada</strong><span>Tue · 6:00 PM · Home</span></div></li><li class="away"><div class="sched-date"><span>Feb</span><b>25</b></div><div class="sched-info"><strong>@ Foothill</strong><span>Thu · 6:00 PM · Away</span></div></li><li class="home"><div class="sched-date"><span>Mar</span><b>2</b></div><div class="sched-info"><strong>vs. Dublin</strong><span>Tue · 6:00 PM · Home</span></div></li><li class="tournament"><div class="sched-date"><span>Mar</span><b>6</b></div><div class="sched-info"><strong> Spring Invitational</strong><span>Sat · 8:00 AM · Tournament</span></div></li><li class="away"><div class="sched-date"><span>Mar</span><b>9</b></div><div class="sched-info"><strong>@ San Ramon Valley</strong><span>Tue · 6:00 PM · Away</span></div></li><li class="home"><div class="sched-date"><span>Mar</span><b>11</b></div><div class="sched-info"><strong>vs. Cal High</strong><span>Thu · 6:00 PM · Home</span></div></li><li class="away"><div class="sched-date"><span>Mar</span><b>16</b></div><div class="sched-info"><strong>@ Dougherty Valley</strong><span>Tue · 6:00 PM · Away</span></div></li><li class="home"><div class="sched-date"><span>Mar</span><b>18</b></div><div class="sched-info"><strong>vs. De La Salle</strong><span>Thu · 6:00 PM · Home</span></div></li><li class="away"><div class="sched-date"><span>Mar</span><b>23</b></div><div class="sched-info"><strong>@ Amador Valley</strong><span>Tue · 6:00 PM · Away</span></div></li><li class="home"><div class="sched-date"><span>Apr</span><b>13</b></div><div class="sched-info"><strong>vs. Livermore</strong><span>Tue · 6:00 PM · Home</span></div></li><li class="home"><div class="sched-date"><span>Apr</span><b>15</b></div><div class="sched-info"><strong>vs. Senior Night vs. Granada</strong><span>Thu · 6:00 PM · Home</span></div></li></ul><p class="fine">Sample schedule. Real dates coming soon.</p></section>
+<section class="wrap" id="photos"><h2>Replay</h2><div class="gallery"><figure><img src="assets/photos/photo-1.svg" alt="Spike at the net"><figcaption>Spike at the net</figcaption></figure><figure><img src="assets/photos/photo-2.svg" alt="Team huddle"><figcaption>Team huddle</figcaption></figure><figure><img src="assets/photos/photo-3.svg" alt="Block at the net"><figcaption>Block at the net</figcaption></figure><figure><img src="assets/photos/photo-4.svg" alt="Serve receive"><figcaption>Serve receive</figcaption></figure><figure><img src="assets/photos/photo-5.svg" alt="Senior night"><figcaption>Senior night</figcaption></figure><figure><img src="assets/photos/photo-6.svg" alt="Tournament day"><figcaption>Tournament day</figcaption></figure></div></section>
+<section class="wrap" id="sponsors"><h2>Sponsors</h2><div class="tiers"><div class="tiers-card tiers-gold"><h3>Gold</h3><div class="tiers-amt">$1,000+</div><p>Large logo on site and banner at home matches, plus a team-signed ball.</p></div><div class="tiers-card tiers-silver"><h3>Silver</h3><div class="tiers-amt">$500+</div><p>Medium logo on site and a shout-out at home matches.</p></div><div class="tiers-card tiers-bronze"><h3>Bronze</h3><div class="tiers-amt">$250+</div><p>Logo on the sponsor wall of this site.</p></div><div class="tiers-card tiers-mustang"><h3>Mustang Family</h3><div class="tiers-amt">$100+</div><p>Name listed on the supporter wall.</p></div></div><div class="sponsors"><img src="assets/sponsors/sponsor-1.svg" alt="Sponsor logo placeholder"><img src="assets/sponsors/sponsor-2.svg" alt="Sponsor logo placeholder"><img src="assets/sponsors/sponsor-3.svg" alt="Sponsor logo placeholder"><img src="assets/sponsors/sponsor-4.svg" alt="Sponsor logo placeholder"><img src="assets/sponsors/sponsor-5.svg" alt="Sponsor logo placeholder"><img src="assets/sponsors/sponsor-6.svg" alt="Sponsor logo placeholder"><img src="assets/sponsors/sponsor-7.svg" alt="Sponsor logo placeholder"><img src="assets/sponsors/sponsor-8.svg" alt="Sponsor logo placeholder"></div></section>
+
+<footer class="footer">
+  <img src="assets/mv-logo.svg" alt="" width="48" height="55">
+  <div>
+    <strong>Monte Vista Boys Volleyball</strong>
+    <p>Monte Vista High School · Danville, CA · <a href="https://mvhs.srvusd.net/Athletics/Team-Sports/Spring-Sports/Volleyball-Boys/index.html">Official team page</a></p>
+    <p class="fine">Donations support the team through the program's booster account. Placeholder content shown.</p>
+  </div>
+</footer>
+
+</body>
+</html>
