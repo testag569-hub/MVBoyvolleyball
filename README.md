@@ -14,7 +14,7 @@ On GitHub: open `donations.yml`, click the pencil icon, copy a donor entry and c
 
 `treasurer/` is an unlinked page where the treasurer types a PIN, adds or fixes donations and presses **Save**. `functions/api/treasurer.js` (a Cloudflare Pages Function) checks the PIN and commits the new `donations.yml` to GitHub, which redeploys the site in about a minute.
 
-It needs two secrets in Cloudflare Pages (Settings > Variables and Secrets): `TREASURER_PIN` and `GITHUB_TOKEN` (a fine-grained token with Contents read and write on this repo only). A 4-digit PIN is light protection, so keep the link private.
+The PIN is set at the top of `functions/api/treasurer.js` and is visible to anyone who reads this public repo. Saving needs one secret in Cloudflare Pages (Settings > Variables and Secrets): `GITHUB_TOKEN`, a fine-grained token with Contents read and write on this repo only.
 
 ## Placeholders to replace
 
