@@ -1,7 +1,8 @@
 """Placeholder content for the fundraising site.
 
-Edit the values here (names, schedule, goal, payment handles) and rerun
-build_site.py to update index.html.
+Edit the values here (names, schedule, payment handles) and rerun
+build_site.py to update index.html. Donations and the goal live in
+donations.js instead, which needs no rebuild.
 """
 
 A = "assets"
@@ -11,6 +12,8 @@ SHORT = "MV Boys Volleyball"
 SEASON = "2027 Season"
 TAGLINE = "Help the Mustangs serve up a winning season."
 
+# The live goal and donations are in donations.js at the top of the repo; the
+# page reads that file when it loads. These numbers only show if it fails to load.
 GOAL = 15000
 RAISED = 6250
 PCT = round(RAISED / GOAL * 100)

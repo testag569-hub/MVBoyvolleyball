@@ -4,6 +4,47 @@ from pathlib import Path
 from fragments import *  # noqa: F401,F403
 
 OUT = Path(__file__).resolve().parent.parent
+# Reads window.FUNDRAISER from donations.js and fills in the totals and the
+# supporter wall. If that file is missing or has a typo, the build-time
+# numbers stay on the page and a short notice appears on the scoreboard.
+FUND_SCRIPT = """
+(function () {
+  var cfg = window.FUNDRAISER;
+  var all = function (k) { return document.querySelectorAll('[data-fund="' + k + '"]'); };
+  var set = function (k, v) { all(k).forEach(function (el) { el.textContent = v; }); };
+  var num = function (v) { var n = parseFloat(String(v == null ? 0 : v).replace(/[$,\\s]/g, '')); return isFinite(n) ? n : 0; };
+  var fmt = function (n) { return Math.round(n).toLocaleString('en-US'); };
+  if (!cfg || !num(cfg.goal)) { all('error').forEach(function (el) { el.hidden = false; }); return; }
+
+  var goal = num(cfg.goal), list = Array.isArray(cfg.donations) ? cfg.donations : [];
+  var other = cfg.otherDonations || {}, raised = num(other.amount), names = {}, extra = Math.max(0, Math.round(num(other.donors)));
+  list.forEach(function (d) {
+    if (!d) return;
+    raised += num(d.amount);
+    var key = String(d.name || '').trim().toLowerCase();
+    if (key) names[key] = 1; else extra += 1;
+  });
+  var donors = Object.keys(names).length + extra, pct = Math.round(raised / goal * 100);
+
+  set('raised', fmt(raised)); set('goal', fmt(goal));
+  set('raised-money', '$' + fmt(raised)); set('goal-money', '$' + fmt(goal));
+  set('donors', donors); set('pct', pct);
+  all('bar').forEach(function (el) { el.style.width = Math.min(pct, 100) + '%'; });
+  all('label').forEach(function (el) { el.setAttribute('aria-label', '$' + fmt(raised) + ' raised of $' + fmt(goal) + ' goal'); });
+
+  var wall = document.querySelector('[data-fund="wall"]');
+  if (!wall || cfg.showSupporterWall === false || !list.length) return;
+  list.forEach(function (d) {
+    if (!d) return;
+    var li = document.createElement('li'), who = document.createElement('span');
+    who.textContent = d.anonymous || !String(d.name || '').trim() ? 'Anonymous' : String(d.name).trim();
+    li.appendChild(who);
+    if (cfg.showAmounts) { var amt = document.createElement('span'); amt.className = 'wall-amt'; amt.textContent = '$' + fmt(num(d.amount)); li.appendChild(amt); }
+    wall.appendChild(li);
+  });
+  all('wall-section').forEach(function (el) { el.hidden = false; });
+})();
+"""
 FONTS = "family=Orbitron:wght@700;900&family=Roboto+Condensed:wght@400;700"
 
 
@@ -37,15 +78,18 @@ h2{color:#ffcf3f;font-size:1.4rem}
 .tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}.tiers-card{background:#222;border-radius:8px;padding:14px;border-top:4px solid #ffcf3f}.tiers-amt{font-family:Orbitron;color:#ff2a44}.tiers-card p{font-size:.85rem;opacity:.8}
 .sponsors{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}.sponsors img{border-radius:6px}
 .footer{display:flex;gap:16px;max-width:1100px;margin:auto;padding:24px 16px;align-items:center;border-top:2px solid #333}.footer p{margin:.2em 0}
+.fund-error{text-align:center;color:#ffcf3f;font-size:.85rem}
+.wall{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}.wall li{background:#222;border-left:4px solid #C8102E;border-radius:6px;padding:10px 12px;display:flex;justify-content:space-between;gap:8px}.wall-amt{font-family:Orbitron;color:#ffcf3f;font-size:.85rem}
 @media(max-width:760px){.donate{grid-template-columns:1fr}.gallery{grid-template-columns:1fr 1fr}.score{grid-template-columns:1fr}.vs{display:none}}
 """
     body = f"""
 <section class="board" id="donate">
  <div class="board-top"><img src="{LOGO}" alt="Monte Vista logo"><h1>Mustangs Fundraiser<br>{SEASON}</h1><img src="{BALL}" alt=""></div>
- <div class="score"><div><label>RAISED</label><span class="led">{RAISED:,}</span></div><div class="vs">OF</div><div><label>GOAL</label><span class="led amber">{GOAL:,}</span></div></div>
+ <div class="score"><div><label>RAISED</label><span class="led" data-fund="raised">{RAISED:,}</span></div><div class="vs">OF</div><div><label>GOAL</label><span class="led amber" data-fund="goal">{GOAL:,}</span></div></div>
  {progress()}
- <div class="periods"><div>DONORS<b>{DONORS}</b></div><div>FUNDED<b>{PCT}%</b></div><div>SET<b>1</b></div></div>
- {nav(items=("Team","Coaches","Schedule","Photos","Sponsors"))}
+ <div class="periods"><div>DONORS<b data-fund="donors">{DONORS}</b></div><div>FUNDED<b><span data-fund="pct">{PCT}</span>%</b></div><div>SET<b>1</b></div></div>
+ <p class="fund-error" data-fund="error" hidden>Fundraiser totals could not be loaded. Check donations.js.</p>
+ {nav(items=("Team","Coaches","Schedule","Photos","Sponsors","Supporters"))}
 </section>
 <section class="wrap"><div class="donate"><div><h2>Pick your play</h2>{amounts()}{uses()}</div><div><h2>Scan to give</h2>{qr_pair()}</div></div></section>
 <section class="wrap" id="coaches"><h2>Coaching staff</h2>{coaches()}</section>
@@ -53,7 +97,10 @@ h2{color:#ffcf3f;font-size:1.4rem}
 <section class="wrap" id="schedule"><h2>Match schedule</h2>{schedule_list()}</section>
 <section class="wrap" id="photos"><h2>Replay</h2>{photos()}</section>
 <section class="wrap" id="sponsors"><h2>Sponsors</h2>{tiers()}{sponsors()}</section>
+<section class="wrap" id="supporters" data-fund="wall-section" hidden><h2>Supporter wall</h2><p class="fine">Thank you to everyone backing the Mustangs.</p><ul class="wall" data-fund="wall"></ul></section>
 {footer()}
+<script src="donations.js"></script>
+<script>{FUND_SCRIPT}</script>
 """
     return css, body
 
