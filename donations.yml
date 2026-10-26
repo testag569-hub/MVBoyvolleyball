@@ -23,33 +23,16 @@ show_amounts: no
 # Money with no name to list (cash at a match, a bake sale) can be its
 # own entry, for example  name: Bake sale  with  anonymous: yes.
 #
-# SAMPLE DONORS: replace them with the real ones.
+# SAMPLE DONORS (made up): replace them with the real ones.
 donations:
-  - name: The Rivera Family
-    amount: 250
+  - name: Marisol Bennett
+    amount: 135
     method: Venmo
 
-  - name: Danville Pizza Co.
-    amount: 1000
-    method: Check
-
-  - name: Jordan Lee
-    amount: 50
+  - name: The Okafor Family
+    amount: 420
     method: Zelle
 
-  - name: Coach's Corner
-    amount: 500
+  - name: Trent Halloway
+    amount: 75
     method: Check
-
-  - name: Sam Patel
-    amount: 100
-    method: Venmo
-    anonymous: yes
-
-  - name: The Nguyen Family
-    amount: 100
-    method: Zelle
-
-  - name: Alex Kim
-    amount: 25
-    method: Cash
