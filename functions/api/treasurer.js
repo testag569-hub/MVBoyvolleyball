@@ -2,12 +2,13 @@
 // It checks the PIN, then reads or rewrites donations.yml in the GitHub repo.
 // The commit triggers a Cloudflare redeploy, which updates the public site.
 //
-// Secrets (Cloudflare Pages > Settings > Variables and Secrets):
-//   TREASURER_PIN  the PIN the treasurer types in
+// Secret (Cloudflare Pages > Settings > Variables and Secrets):
 //   GITHUB_TOKEN   fine-grained token with Contents read/write on this repo
-// Optional: GITHUB_REPO (owner/name) and GITHUB_BRANCH. The branch defaults
+// The PIN is PIN below. Optional overrides: TREASURER_PIN, GITHUB_REPO
+// (owner/name) and GITHUB_BRANCH. The branch defaults
 // to the one Cloudflare is deploying, so a save lands where it is served.
 
+const PIN = '1938';
 const FILE = 'donations.yml';
 const DEFAULT_REPO = 'testag569-hub/mvboyvolleyball';
 const DEFAULT_BRANCH = 'claude/project-thread-oi8s8i';
@@ -121,17 +122,16 @@ async function github(env, path, init = {}) {
 }
 
 export async function onRequestPost({ request, env }) {
-  if (!env.TREASURER_PIN || !env.GITHUB_TOKEN) {
-    return json({ error: 'The treasurer page is not set up yet. Add TREASURER_PIN and GITHUB_TOKEN in Cloudflare, then redeploy.' }, 503);
-  }
   let req;
   try { req = await request.json(); } catch { return json({ error: 'Bad request.' }, 400); }
 
-  // Ignore stray spaces or quotes pasted into the Cloudflare secret.
-  const pin = String(env.TREASURER_PIN).trim().replace(/^["']|["']$/g, '');
+  const pin = String(env.TREASURER_PIN || PIN).trim().replace(/^["']|["']$/g, '');
   if (!same(String(req.pin || '').trim(), pin)) {
     await sleep(1500); // slows down guessing; a 4-digit PIN is still weak
     return json({ error: 'Wrong PIN.' }, 401);
+  }
+  if (!env.GITHUB_TOKEN) {
+    return json({ error: 'PIN is right, but saving is not set up yet. Add GITHUB_TOKEN in Cloudflare, then redeploy.' }, 503);
   }
 
   const branch = env.GITHUB_BRANCH || env.CF_PAGES_BRANCH || DEFAULT_BRANCH;
