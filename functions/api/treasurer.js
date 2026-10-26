@@ -127,7 +127,9 @@ export async function onRequestPost({ request, env }) {
   let req;
   try { req = await request.json(); } catch { return json({ error: 'Bad request.' }, 400); }
 
-  if (!same(req.pin || '', env.TREASURER_PIN)) {
+  // Ignore stray spaces or quotes pasted into the Cloudflare secret.
+  const pin = String(env.TREASURER_PIN).trim().replace(/^["']|["']$/g, '');
+  if (!same(String(req.pin || '').trim(), pin)) {
     await sleep(1500); // slows down guessing; a 4-digit PIN is still weak
     return json({ error: 'Wrong PIN.' }, 401);
   }
