@@ -10,6 +10,12 @@ Edit `donations.yml`. It holds the goal and a short entry per donor. The page ad
 
 On GitHub: open `donations.yml`, click the pencil icon, copy a donor entry and change it, then click **Commit changes**. The notes at the top of the file explain each setting. If a typo breaks the file, the scoreboard shows a short notice instead of crashing.
 
+## Treasurer page
+
+`treasurer-k7m2x9/` is an unlinked page where the treasurer types a PIN, adds or fixes donations and presses **Save**. `functions/api/treasurer.js` (a Cloudflare Pages Function) checks the PIN and commits the new `donations.yml` to GitHub, which redeploys the site in about a minute.
+
+It needs two secrets in Cloudflare Pages (Settings > Variables and Secrets): `TREASURER_PIN` and `GITHUB_TOKEN` (a fine-grained token with Contents read and write on this repo only). A 4-digit PIN is light protection, so keep the link private.
+
 ## Placeholders to replace
 
 - `assets/mv-logo.svg`: stand-in Mustangs crest. Replace with the official Monte Vista logo.
