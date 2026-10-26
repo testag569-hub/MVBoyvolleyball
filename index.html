@@ -67,7 +67,7 @@ h2{color:#ffcf3f;font-size:1.4rem}
   <div class="progress-meta"><span data-fund="pct">42</span>% funded · <span data-fund="donors">48</span> donors</div>
 </div>
  <div class="periods"><div>DONORS<b data-fund="donors">48</b></div><div>FUNDED<b><span data-fund="pct">42</span>%</b></div><div>SET<b>1</b></div></div>
- <p class="fund-error" data-fund="error" hidden>Fundraiser totals could not be loaded. Check donations.js.</p>
+ <p class="fund-error" data-fund="error" hidden>Fundraiser totals could not be loaded. Check donations.yml.</p>
  <nav class="nav"><a href="#team">Team</a><a href="#coaches">Coaches</a><a href="#schedule">Schedule</a><a href="#photos">Photos</a><a href="#sponsors">Sponsors</a><a href="#supporters">Supporters</a></nav>
 </section>
 <section class="wrap"><div class="donate"><div><h2>Pick your play</h2><div class="amounts"><a class="amounts-btn" href="#donate">$25</a><a class="amounts-btn" href="#donate">$50</a><a class="amounts-btn" href="#donate">$100</a><a class="amounts-btn" href="#donate">$250</a><a class="amounts-btn" href="#donate">$500</a><a class="amounts-btn" href="#donate">Other</a></div><ul class="uses"><li><span class="uses-pct">35%</span><div><strong>Tournament fees</strong><p>Entry into invitationals and travel tournaments.</p></div></li><li><span class="uses-pct">25%</span><div><strong>Uniforms & gear</strong><p>Jerseys, warmups and knee pads for every player.</p></div></li><li><span class="uses-pct">20%</span><div><strong>Equipment</strong><p>New match balls, ball carts and training tools.</p></div></li><li><span class="uses-pct">20%</span><div><strong>Travel</strong><p>Bus rides and meals for away tournaments.</p></div></li></ul></div><div><h2>Scan to give</h2>
@@ -97,45 +97,8 @@ h2{color:#ffcf3f;font-size:1.4rem}
     <p class="fine">Donations support the team through the program's booster account. Placeholder content shown.</p>
   </div>
 </footer>
-<script src="donations.js"></script>
-<script>
-(function () {
-  var cfg = window.FUNDRAISER;
-  var all = function (k) { return document.querySelectorAll('[data-fund="' + k + '"]'); };
-  var set = function (k, v) { all(k).forEach(function (el) { el.textContent = v; }); };
-  var num = function (v) { var n = parseFloat(String(v == null ? 0 : v).replace(/[$,\s]/g, '')); return isFinite(n) ? n : 0; };
-  var fmt = function (n) { return Math.round(n).toLocaleString('en-US'); };
-  if (!cfg || !num(cfg.goal)) { all('error').forEach(function (el) { el.hidden = false; }); return; }
-
-  var goal = num(cfg.goal), list = Array.isArray(cfg.donations) ? cfg.donations : [];
-  var other = cfg.otherDonations || {}, raised = num(other.amount), names = {}, extra = Math.max(0, Math.round(num(other.donors)));
-  list.forEach(function (d) {
-    if (!d) return;
-    raised += num(d.amount);
-    var key = String(d.name || '').trim().toLowerCase();
-    if (key) names[key] = 1; else extra += 1;
-  });
-  var donors = Object.keys(names).length + extra, pct = Math.round(raised / goal * 100);
-
-  set('raised', fmt(raised)); set('goal', fmt(goal));
-  set('raised-money', '$' + fmt(raised)); set('goal-money', '$' + fmt(goal));
-  set('donors', donors); set('pct', pct);
-  all('bar').forEach(function (el) { el.style.width = Math.min(pct, 100) + '%'; });
-  all('label').forEach(function (el) { el.setAttribute('aria-label', '$' + fmt(raised) + ' raised of $' + fmt(goal) + ' goal'); });
-
-  var wall = document.querySelector('[data-fund="wall"]');
-  if (!wall || cfg.showSupporterWall === false || !list.length) return;
-  list.forEach(function (d) {
-    if (!d) return;
-    var li = document.createElement('li'), who = document.createElement('span');
-    who.textContent = d.anonymous || !String(d.name || '').trim() ? 'Anonymous' : String(d.name).trim();
-    li.appendChild(who);
-    if (cfg.showAmounts) { var amt = document.createElement('span'); amt.className = 'wall-amt'; amt.textContent = '$' + fmt(num(d.amount)); li.appendChild(amt); }
-    wall.appendChild(li);
-  });
-  all('wall-section').forEach(function (el) { el.hidden = false; });
-})();
-</script>
+<script src="assets/js-yaml.min.js"></script>
+<script src="assets/fundraiser.js"></script>
 
 </body>
 </html>

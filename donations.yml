@@ -1,0 +1,55 @@
+# MV Boys Volleyball fundraiser
+#
+# To update: click the pencil icon on GitHub, make your change, and click
+# "Commit changes". The site adds up the total raised, the number of
+# donors and the percent of the goal for you.
+#
+# Lines starting with # are notes. The site ignores them.
+
+# The fundraising goal in dollars.
+goal: 15000
+
+# Show donor names on the Supporter wall (yes or no).
+show_supporter_wall: yes
+
+# Show how much each person gave on the Supporter wall (yes or no).
+show_amounts: no
+
+# One donor per entry. To add a donor, copy an entry (from "- name:"
+# down to the blank line) and change it. Keep the same spaces at the
+# start of each line.
+#   anonymous: yes   counts the money but shows "Anonymous" on the wall.
+#   method           is an optional note for you.
+# Money with no name to list (cash at a match, a bake sale) can be its
+# own entry, for example  name: Bake sale  with  anonymous: yes.
+#
+# SAMPLE DONORS: replace them with the real ones.
+donations:
+  - name: The Rivera Family
+    amount: 250
+    method: Venmo
+
+  - name: Danville Pizza Co.
+    amount: 1000
+    method: Check
+
+  - name: Jordan Lee
+    amount: 50
+    method: Zelle
+
+  - name: Coach's Corner
+    amount: 500
+    method: Check
+
+  - name: Sam Patel
+    amount: 100
+    method: Venmo
+    anonymous: yes
+
+  - name: The Nguyen Family
+    amount: 100
+    method: Zelle
+
+  - name: Alex Kim
+    amount: 25
+    method: Cash
