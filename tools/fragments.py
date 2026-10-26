@@ -4,10 +4,10 @@ from content import *  # noqa: F401,F403
 
 def progress(cls="progress"):
     return f"""
-<div class="{cls}" role="img" aria-label="{money(RAISED)} raised of {money(GOAL)} goal">
-  <div class="{cls}-nums"><strong>{money(RAISED)}</strong> raised of {money(GOAL)} goal</div>
-  <div class="{cls}-track"><div class="{cls}-fill" style="width:{PCT}%"></div></div>
-  <div class="{cls}-meta">{PCT}% funded · {DONORS} donors</div>
+<div class="{cls}" role="img" aria-label="{money(RAISED)} raised of {money(GOAL)} goal" data-fund="label">
+  <div class="{cls}-nums"><strong data-fund="raised-money">{money(RAISED)}</strong> raised of <span data-fund="goal-money">{money(GOAL)}</span> goal</div>
+  <div class="{cls}-track"><div class="{cls}-fill" style="width:{PCT}%" data-fund="bar"></div></div>
+  <div class="{cls}-meta"><span data-fund="pct">{PCT}</span>% funded · <span data-fund="donors">{DONORS}</span> donors</div>
 </div>"""
 
 
