@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Treasurer Entry</title>
+<style>
+:root{--bg:#1a1a1a;--panel:#050505;--line:#333;--ink:#f2f2f2;--dim:#a8a8a8;--red:#C8102E;--hot:#ff2a44;--amber:#ffcf3f;--ok:#4cd27a}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+main{max-width:860px;margin:0 auto;padding:24px 16px 120px}
+h1{font-size:1.4rem;margin:0 0 4px}h2{font-size:1.05rem;color:var(--amber);margin:0 0 12px}
+p.sub{color:var(--dim);margin:0 0 20px}
+.card{background:var(--panel);border:2px solid var(--line);border-radius:10px;padding:16px;margin-bottom:16px}
+label{display:block;font-size:.8rem;color:var(--dim);margin-bottom:4px}
+input,select{width:100%;font:inherit;color:var(--ink);background:#151515;border:1px solid #444;border-radius:6px;padding:9px 10px}
+input:focus,select:focus{outline:2px solid var(--hot);outline-offset:1px}
+input[type=checkbox]{width:auto;accent-color:var(--red);transform:scale(1.2);margin-right:8px}
+.check{display:flex;align-items:center;font-size:.95rem;color:var(--ink);margin:8px 0}
+.grid{display:grid;gap:10px;grid-template-columns:2fr 1fr 1fr 1.2fr auto;align-items:end}
+@media (max-width:640px){.grid{grid-template-columns:1fr 1fr}.grid .wide{grid-column:1/-1}}
+button{font:inherit;font-weight:600;border:0;border-radius:6px;padding:10px 16px;cursor:pointer;background:#2a2a2a;color:var(--ink)}
+button.primary{background:var(--red);color:#fff}button.primary:hover{background:var(--hot)}
+button:disabled{opacity:.5;cursor:default}
+button.x{background:none;color:var(--dim);padding:6px 10px}button.x:hover{color:var(--hot)}
+.pin{max-width:320px;margin:12vh auto 0;text-align:center}
+.pin input{font-size:2rem;letter-spacing:.5em;text-align:center;margin:12px 0}
+.msg{min-height:1.4em;margin:8px 0 0;font-size:.95rem}.msg.err{color:var(--hot)}.msg.ok{color:var(--ok)}
+.totals{display:flex;gap:24px;flex-wrap:wrap}.totals b{display:block;font-size:1.5rem;color:var(--hot)}
+table{width:100%;min-width:640px;border-collapse:collapse}
+td{padding:4px 4px;border-top:1px solid #222;vertical-align:middle}
+td input,td select{padding:6px 8px}
+td.anon{text-align:center}
+th{font-size:.75rem;color:var(--dim);text-align:left;font-weight:500;padding:0 4px 6px}
+.wrap{overflow-x:auto}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#0d0d0d;border-top:2px solid var(--line);padding:12px 16px}
+.bar div{max-width:860px;margin:0 auto;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.bar .msg{margin:0}
+.empty{color:var(--dim);padding:8px 0}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+  <form id="lock" class="pin">
+    <h1>Treasurer</h1>
+    <p class="sub">Enter the PIN to update donations.</p>
+    <input id="pin" type="password" inputmode="numeric" autocomplete="off" maxlength="12" aria-label="PIN" required autofocus>
+    <button class="primary" type="submit" style="width:100%">Unlock</button>
+    <p id="lockMsg" class="msg err" role="alert"></p>
+  </form>
+
+  <div id="app" hidden>
+    <h1>Donation entry</h1>
+    <p class="sub">Add or fix donations, then press <b>Save</b>. The website updates about a minute after saving.</p>
+
+    <section class="card">
+      <h2>Add a donation</h2>
+      <form id="add" class="grid">
+        <div class="wide"><label for="aName">Name</label><input id="aName" required maxlength="80" placeholder="The Smith Family"></div>
+        <div><label for="aAmt">Amount ($)</label><input id="aAmt" required inputmode="decimal" placeholder="100"></div>
+        <div><label for="aMethod">Method</label><select id="aMethod"></select></div>
+        <div><label for="aDate">Date</label><input id="aDate" type="date"></div>
+        <div><button class="primary" type="submit">Add</button></div>
+        <label class="check wide"><input id="aAnon" type="checkbox">Anonymous (counts the money, shows "Anonymous" on the wall)</label>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Totals</h2>
+      <div class="totals">
+        <div>Raised<b id="tRaised">$0</b></div>
+        <div>Donations<b id="tCount">0</b></div>
+        <div>Of goal<b id="tPct">0%</b></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Settings</h2>
+      <div style="max-width:220px"><label for="goal">Goal ($)</label><input id="goal" inputmode="numeric"></div>
+      <label class="check"><input id="wall" type="checkbox">Show donor names on the Supporter wall</label>
+      <label class="check"><input id="amts" type="checkbox">Show each person's amount on the wall</label>
+    </section>
+
+    <section class="card">
+      <h2>All donations</h2>
+      <div class="wrap">
+        <table>
+          <thead><tr><th>Name</th><th>Amount</th><th>Method</th><th>Date</th><th>Anon.</th><th></th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <p id="empty" class="empty" hidden>No donations yet.</p>
+    </section>
+  </div>
+</main>
+
+<div class="bar" id="bar" hidden><div>
+  <p id="saveMsg" class="msg" role="status"></p>
+  <button id="save" class="primary" type="button">Save</button>
+</div></div>
+
+<script src="../assets/js-yaml.min.js"></script>
+<script>
+(function () {
+  var METHODS = ['Venmo', 'Zelle', 'Check', 'Cash', 'Other'];
+  var $ = function (id) { return document.getElementById(id); };
+  var pin = '', sha = '', list = [], dirty = false;
+  var num = function (v) { var n = parseFloat(String(v == null ? '' : v).replace(/[$,\s]/g, '')); return isFinite(n) ? n : 0; };
+  var yes = function (v) { return v === true || /^\s*(y|yes|x|true|1)\s*$/i.test(String(v == null ? '' : v)); };
+  var no = function (v) { return v === false || /^\s*(n|no|false|0)\s*$/i.test(String(v == null ? '' : v)); };
+  var money = function (n) { return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 2 }); };
+  var today = function () { var d = new Date(); return new Date(d - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10); };
+  var dateStr = function (v) { return v instanceof Date ? v.toISOString().slice(0, 10) : (v ? String(v) : ''); };
+
+  function msg(el, text, kind) { el.textContent = text; el.className = 'msg' + (kind ? ' ' + kind : ''); }
+
+  function api(body) {
+    body.pin = pin;
+    return fetch('/api/treasurer', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) })
+      .then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (j) {
+          if (!r.ok) throw new Error(j.error || (r.status === 404 || r.status === 405 ? 'The save service is not running on this site yet.' : 'Error ' + r.status));
+          return j;
+        });
+      });
+  }
+
+  function methodSelect(value) {
+    var s = document.createElement('select');
+    var opts = METHODS.slice();
+    if (value && opts.indexOf(value) < 0) opts.push(value);
+    [''].concat(opts).forEach(function (m) { var o = document.createElement('option'); o.value = m; o.textContent = m || '-'; s.appendChild(o); });
+    s.value = value || '';
+    return s;
+  }
+
+  function changed() { dirty = true; totals(); msg($('saveMsg'), 'You have unsaved changes.', ''); }
+
+  function totals() {
+    var raised = list.reduce(function (s, d) { return s + num(d.amount); }, 0), goal = num($('goal').value);
+    $('tRaised').textContent = money(raised);
+    $('tCount').textContent = list.length;
+    $('tPct').textContent = goal ? Math.round(raised / goal * 100) + '%' : '-';
+  }
+
+  function cell(tr, el, key, d, prop) {
+    var td = document.createElement('td');
+    if (prop) td.className = prop;
+    td.appendChild(el);
+    tr.appendChild(td);
+    el.addEventListener(el.type === 'checkbox' ? 'change' : 'input', function () {
+      d[key] = el.type === 'checkbox' ? el.checked : el.value;
+      changed();
+    });
+  }
+
+  function draw() {
+    var tb = $('rows');
+    tb.textContent = '';
+    $('empty').hidden = list.length > 0;
+    list.forEach(function (d, i) {
+      var tr = document.createElement('tr');
+      var n = document.createElement('input'); n.value = d.name; n.maxLength = 80; n.setAttribute('aria-label', 'Name');
+      var a = document.createElement('input'); a.value = d.amount; a.inputMode = 'decimal'; a.style.width = '90px'; a.setAttribute('aria-label', 'Amount');
+      var m = methodSelect(d.method); m.setAttribute('aria-label', 'Method');
+      var dt = document.createElement('input'); dt.type = 'date'; dt.value = d.date; dt.setAttribute('aria-label', 'Date');
+      var an = document.createElement('input'); an.type = 'checkbox'; an.checked = d.anonymous; an.setAttribute('aria-label', 'Anonymous');
+      cell(tr, n, 'name', d); cell(tr, a, 'amount', d); cell(tr, m, 'method', d); cell(tr, dt, 'date', d); cell(tr, an, 'anonymous', d, 'anon');
+      var td = document.createElement('td'), del = document.createElement('button');
+      del.type = 'button'; del.className = 'x'; del.textContent = 'Remove'; del.setAttribute('aria-label', 'Remove ' + d.name);
+      del.onclick = function () { if (confirm('Remove ' + (d.name || 'this donation') + ' (' + money(num(d.amount)) + ')?')) { list.splice(i, 1); draw(); changed(); } };
+      td.appendChild(del); tr.appendChild(td); tb.appendChild(tr);
+    });
+    totals();
+  }
+
+  function fill(res) {
+    var cfg = window.jsyaml.load(res.yaml) || {};
+    sha = res.sha;
+    $('goal').value = num(cfg.goal) || '';
+    $('wall').checked = !no(cfg.show_supporter_wall);
+    $('amts').checked = yes(cfg.show_amounts);
+    list = (Array.isArray(cfg.donations) ? cfg.donations : []).filter(function (d) { return d && typeof d === 'object'; }).map(function (d) {
+      return { name: String(d.name == null ? '' : d.name), amount: num(d.amount), method: d.method ? String(d.method) : '', date: dateStr(d.date), anonymous: yes(d.anonymous) };
+    });
+    dirty = false;
+    draw();
+  }
+
+  $('lock').addEventListener('submit', function (e) {
+    e.preventDefault();
+    pin = $('pin').value.trim();
+    var btn = this.querySelector('button'); btn.disabled = true;
+    msg($('lockMsg'), 'Checking...', '');
+    api({ action: 'load' }).then(function (res) {
+      fill(res);
+      $('lock').hidden = true; $('app').hidden = false; $('bar').hidden = false;
+      msg($('saveMsg'), 'Up to date.', '');
+      $('aName').focus();
+    }).catch(function (err) {
+      msg($('lockMsg'), err.message, 'err'); $('pin').select();
+    }).then(function () { btn.disabled = false; });
+  });
+
+  METHODS.forEach(function (m) { var o = document.createElement('option'); o.value = o.textContent = m; $('aMethod').appendChild(o); });
+  $('aDate').value = today();
+
+  $('add').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var amt = num($('aAmt').value);
+    if (!(amt > 0)) { $('aAmt').focus(); return msg($('saveMsg'), 'Enter an amount above 0.', 'err'); }
+    list.push({ name: $('aName').value.trim(), amount: amt, method: $('aMethod').value, date: $('aDate').value, anonymous: $('aAnon').checked });
+    this.reset(); $('aDate').value = today();
+    draw(); changed();
+    $('aName').focus();
+  });
+
+  ['goal', 'wall', 'amts'].forEach(function (id) { $(id).addEventListener(id === 'goal' ? 'input' : 'change', changed); });
+
+  $('save').addEventListener('click', function () {
+    var btn = this; btn.disabled = true;
+    msg($('saveMsg'), 'Saving...', '');
+    var data = { goal: num($('goal').value), show_supporter_wall: $('wall').checked, show_amounts: $('amts').checked,
+      donations: list.map(function (d) { return { name: d.name, amount: num(d.amount), method: d.method, date: d.date, anonymous: d.anonymous }; }) };
+    api({ action: 'save', sha: sha, data: data }).then(function (res) {
+      sha = res.sha || sha; dirty = false;
+      msg($('saveMsg'), 'Saved. The website updates in about a minute.', 'ok');
+    }).catch(function (err) {
+      msg($('saveMsg'), err.message, 'err');
+    }).then(function () { btn.disabled = false; });
+  });
+
+  window.addEventListener('beforeunload', function (e) { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+})();
+</script>
+</body>
+</html>
