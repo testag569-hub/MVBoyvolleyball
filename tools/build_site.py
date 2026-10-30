@@ -27,7 +27,7 @@ h2{color:#ffcf3f;font-size:1.4rem}
 .donate{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
 .amounts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}.amounts-btn{font-family:Orbitron;text-align:center;background:#C8102E;padding:14px 0;text-decoration:none;border-radius:6px;border-bottom:4px solid #7a0a1c}
 .qr-card{background:#0a0a0a;padding:12px;border:2px solid #333;border-radius:8px}
-.uses{list-style:none;padding:0}.uses li{display:flex;gap:14px;padding:12px;background:#222;margin-bottom:8px;border-radius:6px}.uses-pct{font-family:Orbitron;color:#ffcf3f;min-width:64px;font-size:1.3rem}.uses p{margin:0;opacity:.7;font-size:.9rem}
+.uses{list-style:none;padding:0}.uses li{display:flex;gap:14px;padding:12px;background:#222;margin-bottom:8px;border-radius:6px}.uses p{margin:0;opacity:.7;font-size:.9rem}
 .coaches{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.coaches-card{background:#222;border-radius:8px;overflow:hidden;display:flex}.coaches-photo{background:#C8102E;padding:16px;display:grid;place-items:center}.coaches-photo img{width:54px}.coaches-body{padding:14px}.coaches-role{color:#ffcf3f;font-size:.85rem}.coaches-body p{font-size:.85rem;opacity:.7;margin:.4em 0 0}
 .sched{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
 .sched li{display:flex;gap:12px;background:#050505;border:2px solid #333;border-radius:8px;padding:12px}.sched li.home{border-color:#C8102E}

@@ -29,7 +29,7 @@ def qr_pair(cls="qr"):
 
 def uses(cls="uses"):
     items = "".join(
-        f'<li><span class="{cls}-pct">{p}%</span><div><strong>{t}</strong><p>{d}</p></div></li>' for t, d, p in USES
+        f'<li><div><strong>{t}</strong><p>{d}</p></div></li>' for t, d, p in USES
     )
     return f'<ul class="{cls}">{items}</ul>'
 
