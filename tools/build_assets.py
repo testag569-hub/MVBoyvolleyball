@@ -2,7 +2,7 @@
 
 Every file here is a stand-in. Replace assets/mv-logo.svg with the official
 Monte Vista logo, assets/photos/*.svg with real team photos, and
-assets/qr-*.svg with the real Zelle / Venmo QR codes.
+assets/qr-venmo.svg with the real Venmo QR code.
 """
 import random
 from pathlib import Path
@@ -146,6 +146,5 @@ if __name__ == "__main__":
     for i, t in enumerate(titles, 1):
         write(f"photos/photo-{i}.svg", photo(i * 7, t))
     write("qr-venmo.svg", qr(11, "VENMO", "#008CFF"))
-    write("qr-zelle.svg", qr(23, "ZELLE", "#6D1ED4"))
     for i in range(1, 9):
         write(f"sponsors/sponsor-{i}.svg", sponsor(i))
