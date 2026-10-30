@@ -64,8 +64,8 @@ SCHEDULE = [
     ("Apr 15", "Thu", "Senior Night vs. Granada", "Home", "6:00 PM"),
 ]
 
-PHOTOS = [f"{A}/photos/team-champions.jpg"] + [f"{A}/photos/photo-{i}.svg" for i in range(2, 7)]
-PHOTO_ALTS = ["Team photo with the championship plaque", "Team huddle", "Block at the net", "Serve receive", "Senior night", "Tournament day"]
+PHOTOS = [f"{A}/photos/team-champions.jpg", f"{A}/photos/team-home-gym.jpg", f"{A}/photos/action-spike.jpg"] + [f"{A}/photos/photo-{i}.svg" for i in range(4, 7)]
+PHOTO_ALTS = ["Team photo with the championship plaque", "Team photo in the home gym", "#16 spiking at the net", "Serve receive", "Senior night", "Tournament day"]
 SPONSORS = [f"{A}/sponsors/sponsor-{i}.svg" for i in range(1, 9)]
 LOGO = f"{A}/mv-logo.svg"
 BALL = f"{A}/volleyball.svg"
