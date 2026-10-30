@@ -25,7 +25,6 @@ USES = [
     ("Tournament fees", "Entry into invitationals and travel tournaments.", 35),
     ("Uniforms & gear", "Jerseys, warmups and knee pads for every player.", 25),
     ("Equipment", "New match balls, ball carts and training tools.", 20),
-    ("Travel", "Bus rides and meals for away tournaments.", 20),
 ]
 
 TIERS = [
