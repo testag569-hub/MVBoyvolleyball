@@ -29,7 +29,6 @@ h2{color:#ffcf3f;font-size:1.4rem}
 .qr-card{background:#0a0a0a;padding:12px;border:2px solid #333;border-radius:8px}
 .uses{list-style:none;padding:0}.uses li{display:flex;gap:14px;padding:12px;background:#222;margin-bottom:8px;border-radius:6px}.uses-pct{font-family:Orbitron;color:#ffcf3f;min-width:64px;font-size:1.3rem}.uses p{margin:0;opacity:.7;font-size:.9rem}
 .coaches{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.coaches-card{background:#222;border-radius:8px;overflow:hidden;display:flex}.coaches-photo{background:#C8102E;padding:16px;display:grid;place-items:center}.coaches-photo img{width:54px}.coaches-body{padding:14px}.coaches-role{color:#ffcf3f;font-size:.85rem}.coaches-body p{font-size:.85rem;opacity:.7;margin:.4em 0 0}
-.roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}.roster-card{background:#050505;border:2px solid #333;border-radius:8px;padding:12px;text-align:center}.roster-num{font-family:Orbitron;font-weight:900;font-size:2.4rem;color:#ff2a44;text-shadow:0 0 10px #ff2a44}.roster-pos{font-size:.75rem;opacity:.6}
 .sched{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
 .sched li{display:flex;gap:12px;background:#050505;border:2px solid #333;border-radius:8px;padding:12px}.sched li.home{border-color:#C8102E}
 .sched-date{font-family:Orbitron;color:#ffcf3f;text-align:center;min-width:50px}.sched-date span{display:block;font-size:.7rem}.sched-date b{font-size:1.5rem}.sched-info{display:flex;flex-direction:column}.sched-info span{font-size:.8rem;opacity:.6}
@@ -48,11 +47,10 @@ h2{color:#ffcf3f;font-size:1.4rem}
  {progress()}
  <div class="periods"><div>DONORS<b data-fund="donors">{DONORS}</b></div><div>FUNDED<b><span data-fund="pct">{PCT}</span>%</b></div><div>SET<b>1</b></div></div>
  <p class="fund-error" data-fund="error" hidden>Fundraiser totals could not be loaded. Check donations.yml.</p>
- {nav(items=("Team","Coaches","Schedule","Photos","Sponsors","Supporters"))}
+ {nav(items=("Coaches","Schedule","Photos","Sponsors","Supporters"))}
 </section>
 <section class="wrap"><div class="donate"><div><h2>Pick your play</h2>{amounts()}{uses()}</div><div><h2>Scan to give</h2>{qr_pair()}</div></div></section>
 <section class="wrap" id="coaches"><h2>Coaching staff</h2>{coaches()}</section>
-<section class="wrap" id="team"><h2>Starting lineup &amp; bench</h2>{roster_cards()}</section>
 <section class="wrap" id="schedule"><h2>Match schedule</h2>{schedule_list()}</section>
 <section class="wrap" id="photos"><h2>Replay</h2>{photos()}</section>
 <section class="wrap" id="sponsors"><h2>Sponsors</h2>{tiers()}{sponsors()}</section>
