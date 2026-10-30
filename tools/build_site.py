@@ -42,7 +42,7 @@ h2{color:#ffcf3f;font-size:1.4rem}
 """
     body = f"""
 <section class="board" id="donate">
- <div class="board-top"><img src="{LOGO}" alt="Monte Vista logo"><h1>Monte Vista High Mustangs Volleyball<br>{SEASON}</h1><img src="{BALL}" alt=""></div>
+ <div class="board-top"><img src="{LOGO}" alt="Monte Vista logo"><h1>Monte Vista High Mustangs Volleyball<br>{SEASON} Fundraiser</h1><img src="{BALL}" alt=""></div>
  <div class="score"><div><label>RAISED</label><span class="led" data-fund="raised">{RAISED:,}</span></div><div class="vs">OF</div><div><label>GOAL</label><span class="led amber" data-fund="goal">{GOAL:,}</span></div></div>
  {progress()}
  <div class="periods"><div>DONORS<b data-fund="donors">{DONORS}</b></div><div>FUNDED<b><span data-fund="pct">{PCT}</span>%</b></div><div>SET<b>1</b></div></div>
