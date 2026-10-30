@@ -47,12 +47,12 @@ h2{color:#ffcf3f;font-size:1.4rem}
  {progress()}
  <div class="periods"><div>DONORS<b data-fund="donors">{DONORS}</b></div><div>FUNDED<b><span data-fund="pct">{PCT}</span>%</b></div><div>SET<b>1</b></div></div>
  <p class="fund-error" data-fund="error" hidden>Fundraiser totals could not be loaded. Check donations.yml.</p>
- {nav(items=("Coaches","Schedule","Photos","Sponsors","Supporters"))}
+ {nav(items=("Coaches","Photos","Schedule","Sponsors","Supporters"))}
 </section>
 <section class="wrap"><div class="donate"><div><h2>Pick your play</h2>{amounts()}{uses()}</div><div><h2>Scan to give</h2>{qr_pair()}</div></div></section>
 <section class="wrap" id="coaches"><h2>Coaching staff</h2>{coaches()}</section>
-<section class="wrap" id="schedule"><h2>Match schedule</h2>{schedule_list()}</section>
 <section class="wrap" id="photos"><h2>Replay</h2>{photos()}</section>
+<section class="wrap" id="schedule"><h2>Match schedule</h2>{schedule_list()}</section>
 <section class="wrap" id="sponsors"><h2>Sponsors</h2>{tiers()}{sponsors()}</section>
 <section class="wrap" id="supporters" data-fund="wall-section" hidden><h2>Supporter wall</h2><p class="fine">Thank you to everyone backing the Mustangs.</p><ul class="wall" data-fund="wall"></ul></section>
 {footer()}
