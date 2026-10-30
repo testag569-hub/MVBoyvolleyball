@@ -38,7 +38,7 @@ TIERS = [
 AMOUNTS = [25, 50, 100, 250, 500]
 
 COACHES = [
-    ("Coach Name", "Head Coach", "Leads the varsity program. Bio coming soon."),
+    ("Maile Farrales", "Head Coach", "Leads the varsity program. Bio coming soon."),
     ("Coach Name", "Assistant Coach", "Works with hitters and blockers. Bio coming soon."),
     ("Coach Name", "JV Head Coach", "Develops the next wave of Mustangs. Bio coming soon."),
 ]
