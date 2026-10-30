@@ -48,8 +48,9 @@ def sponsors(cls="sponsors", count=8):
     return f'<div class="{cls}">{logos}</div>'
 
 
-def photos(cls="gallery", count=6, start=0):
-    idx = [(start + i) % 6 for i in range(count)]
+def photos(cls="gallery", count=None, start=0):
+    n = len(PHOTOS)
+    idx = [(start + i) % n for i in range(count or n)]
     pics = "".join(
         f'<figure{FEATURED if j == 0 else ""}><img src="{PHOTOS[j]}" alt="{PHOTO_ALTS[j]}"><figcaption>{PHOTO_ALTS[j]}</figcaption></figure>'
         for j in idx

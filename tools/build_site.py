@@ -32,13 +32,13 @@ h2{color:#ffcf3f;font-size:1.4rem}
 .sched{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
 .sched li{display:flex;gap:12px;background:#050505;border:2px solid #333;border-radius:8px;padding:12px}.sched li.home{border-color:#C8102E}
 .sched-date{font-family:Orbitron;color:#ffcf3f;text-align:center;min-width:50px}.sched-date span{display:block;font-size:.7rem}.sched-date b{font-size:1.5rem}.sched-info{display:flex;flex-direction:column}.sched-info span{font-size:.8rem;opacity:.6}
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.gallery figure{border:4px solid #333;border-radius:6px;overflow:hidden}.gallery img{aspect-ratio:16/10;object-fit:cover}.gallery figcaption{font-family:Orbitron;font-size:.65rem;padding:6px;background:#050505}.gallery .featured{grid-column:span 2;grid-row:span 2;display:flex;flex-direction:column}.gallery .featured img{flex:1;min-height:0;aspect-ratio:auto;object-position:center 40%}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.gallery figure{border:4px solid #333;border-radius:6px;overflow:hidden}.gallery img{aspect-ratio:16/10;object-fit:cover}.gallery figcaption{font-family:Orbitron;font-size:.65rem;padding:6px;background:#050505}.gallery .featured{grid-column:1/-1}.gallery .featured img{aspect-ratio:3/2;object-position:center 55%}
 .tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}.tiers-card{background:#222;border-radius:8px;padding:14px;border-top:4px solid #ffcf3f}.tiers-amt{font-family:Orbitron;color:#ff2a44}.tiers-card p{font-size:.85rem;opacity:.8}
 .sponsors{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}.sponsors img{border-radius:6px}
 .footer{display:flex;gap:16px;max-width:1100px;margin:auto;padding:24px 16px;align-items:center;border-top:2px solid #333}.footer p{margin:.2em 0}
 .fund-error{text-align:center;color:#ffcf3f;font-size:.85rem}
 .wall{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}.wall li{background:#222;border-left:4px solid #C8102E;border-radius:6px;padding:10px 12px;display:flex;justify-content:space-between;gap:8px}.wall-amt{font-family:Orbitron;color:#ffcf3f;font-size:.85rem}
-@media(max-width:760px){.donate{grid-template-columns:1fr}.gallery{grid-template-columns:1fr 1fr}.score{grid-template-columns:1fr}.vs{display:none}}
+@media(max-width:760px){.donate{grid-template-columns:1fr}.gallery{grid-template-columns:1fr}.score{grid-template-columns:1fr}.vs{display:none}}
 """
     body = f"""
 <section class="board" id="donate">
