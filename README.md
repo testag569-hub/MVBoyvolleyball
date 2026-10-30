@@ -18,7 +18,7 @@ The PIN is set at the top of `functions/api/treasurer.js` and is visible to anyo
 
 ## Placeholders to replace
 
-- `assets/mv-logo.svg`: stand-in Mustangs crest. Replace with the official Monte Vista logo.
+- `assets/mv-logo.png`: official Monte Vista Mustangs logo (header, coach cards, footer, favicon).
 - `assets/photos/photo-1.svg` … `photo-6.svg`: illustrated volleyball scenes. Replace with team photos.
 - `assets/qr-venmo.svg`: sample code that does not scan. Replace with the real Venmo QR code.
 - `assets/sponsors/*.svg`: sponsor logo slots.

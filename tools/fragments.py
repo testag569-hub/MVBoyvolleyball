@@ -108,7 +108,7 @@ def nav(cls="nav", items=("Donate", "Team", "Coaches", "Schedule", "Photos", "Sp
 def footer(cls="footer"):
     return f"""
 <footer class="{cls}">
-  <img src="{LOGO}" alt="" width="48" height="55">
+  <img src="{LOGO}" alt="" width="48" height="48">
   <div>
     <strong>{TEAM}</strong>
     <p>Monte Vista High School · Danville, CA · <a href="{OFFICIAL}">Official team page</a></p>
@@ -144,7 +144,8 @@ def page(title, fonts, css, body):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
-<link rel="icon" href="{LOGO}">
+<link rel="icon" type="image/png" href="{LOGO}">
+<link rel="apple-touch-icon" href="{LOGO}">
 {font_link}
 <style>{BASE_CSS}{css}</style>
 </head>

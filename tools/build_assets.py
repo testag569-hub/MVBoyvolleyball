@@ -1,7 +1,7 @@
-"""Generate placeholder SVG assets: team logo, volleyball photos, donation QR codes.
+"""Generate placeholder SVG assets: volleyball photos, donation QR codes.
 
-Every file here is a stand-in. Replace assets/mv-logo.svg with the official
-Monte Vista logo, assets/photos/*.svg with real team photos, and
+The team logo is the official assets/mv-logo.png and is not generated here.
+Every file here is a stand-in. Replace assets/photos/*.svg with real team photos, and
 assets/qr-venmo.svg with the real Venmo QR code.
 """
 import random
@@ -140,7 +140,6 @@ def sponsor(i):
 
 
 if __name__ == "__main__":
-    write("mv-logo.svg", LOGO)
     write("volleyball.svg", f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">{ball(50, 50, 46)}</svg>')
     titles = ["Spike at the net", "Team huddle", "Block at the net", "Serve receive", "Senior night", "Tournament day"]
     for i, t in enumerate(titles, 1):
