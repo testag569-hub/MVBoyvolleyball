@@ -49,7 +49,7 @@ h2{color:#ffcf3f;font-size:1.4rem}
  <p class="fund-error" data-fund="error" hidden>Fundraiser totals could not be loaded. Check donations.yml.</p>
  {nav(items=("Sponsors","Coaches","Photos","Schedule","Supporters"))}
 </section>
-<section class="wrap"><div class="donate"><div><h2>Pick your play</h2>{amounts()}{uses()}</div><div><h2>Scan to give</h2>{qr_pair()}</div></div></section>
+<section class="wrap"><div class="donate"><div><h2>PICK YOUR DONATION</h2>{amounts()}{uses()}</div><div><h2>Scan to give</h2>{qr_pair()}</div></div></section>
 <section class="wrap" id="sponsors"><h2>Sponsors</h2>{tiers()}{sponsors()}</section>
 <section class="wrap" id="coaches"><h2>Coaching staff</h2>{coaches()}</section>
 <section class="wrap" id="photos"><h2>Replay</h2>{photos()}</section>
