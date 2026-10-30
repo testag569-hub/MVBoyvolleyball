@@ -35,7 +35,7 @@ TIERS = [
     ("Mustang Family", 100, "Name listed on the supporter wall."),
 ]
 
-AMOUNTS = [25, 50, 100, 250, 500]
+AMOUNTS = [25, 50, 100, 250, 500, 1000]
 
 COACHES = [
     ("Maile Farrales", "Head Coach", "A 2024 San Jose State graduate, Coach Farrales was a four-year varsity player, three-year starter and team captain at Mills High School, and played club for SF's Beach Vibes. At SJSU she spent three years on the women's club team and, as club president in 2023, led it to NCVF Nationals and Club Sport Team of the Year honors."),
