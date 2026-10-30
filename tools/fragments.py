@@ -48,11 +48,15 @@ def sponsors(cls="sponsors", count=8):
 
 
 def photos(cls="gallery", count=6, start=0):
+    idx = [(start + i) % 6 for i in range(count)]
     pics = "".join(
-        f'<figure><img src="{PHOTOS[(start+i) % 6]}" alt="{PHOTO_ALTS[(start+i) % 6]}"><figcaption>{PHOTO_ALTS[(start+i) % 6]}</figcaption></figure>'
-        for i in range(count)
+        f'<figure{FEATURED if j == 0 else ""}><img src="{PHOTOS[j]}" alt="{PHOTO_ALTS[j]}"><figcaption>{PHOTO_ALTS[j]}</figcaption></figure>'
+        for j in idx
     )
     return f'<div class="{cls}">{pics}</div>'
+
+
+FEATURED = ' class="featured"'
 
 
 def coaches(cls="coaches"):
