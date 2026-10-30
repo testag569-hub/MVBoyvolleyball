@@ -28,9 +28,9 @@ USES = [
 ]
 
 TIERS = [
-    ("Gold", 1000, "Large logo on site and banner at home matches, plus a team-signed ball."),
-    ("Silver", 500, "Medium logo on site and a shout-out at home matches."),
-    ("Bronze", 250, "Logo on the sponsor wall of this site."),
+    ("Platinum", 1000, "Large logo on site and banner at home matches, plus a team-signed ball."),
+    ("Gold", 500, "Medium logo on site and a shout-out at home matches."),
+    ("Silver", 250, "Logo on the sponsor wall of this site."),
     ("Mustang Family", 100, "Name listed on the supporter wall."),
 ]
 
