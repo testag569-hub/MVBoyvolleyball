@@ -140,7 +140,6 @@ def sponsor(i):
 
 
 if __name__ == "__main__":
-    write("volleyball.svg", f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">{ball(50, 50, 46)}</svg>')
     titles = ["Spike at the net", "Team huddle", "Block at the net", "Serve receive", "Senior night", "Tournament day"]
     for i, t in enumerate(titles, 1):
         write(f"photos/photo-{i}.svg", photo(i * 7, t))

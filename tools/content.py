@@ -68,7 +68,7 @@ PHOTO_ALTS = ["Team photo with the championship plaque", "Team photo in the home
 SPONSORS = [f"{A}/sponsors/sponsor-{i}.svg" for i in range(1, 9)]
 LOGO = f"{A}/mv-logo.png"
 HORSE = f"{A}/mustang-horse.png"
-BALL = f"{A}/volleyball.svg"
+BALL = f"{A}/volleyball.png"
 QR_VENMO = f"{A}/qr-venmo.svg"
 OFFICIAL = "https://mvhs.srvusd.net/Athletics/Team-Sports/Spring-Sports/Volleyball-Boys/index.html"
 
