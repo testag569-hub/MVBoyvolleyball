@@ -20,7 +20,6 @@ PCT = round(RAISED / GOAL * 100)
 DONORS = 48
 
 VENMO = "@MV-Boys-Volleyball"
-ZELLE = "mvboysvolleyball@example.com"
 
 USES = [
     ("Tournament fees", "Entry into invitationals and travel tournaments.", 35),
@@ -72,7 +71,6 @@ SPONSORS = [f"{A}/sponsors/sponsor-{i}.svg" for i in range(1, 9)]
 LOGO = f"{A}/mv-logo.svg"
 BALL = f"{A}/volleyball.svg"
 QR_VENMO = f"{A}/qr-venmo.svg"
-QR_ZELLE = f"{A}/qr-zelle.svg"
 OFFICIAL = "https://mvhs.srvusd.net/Athletics/Team-Sports/Spring-Sports/Volleyball-Boys/index.html"
 
 
