@@ -2,7 +2,7 @@
 
 The fundraising site for MV Boys Volleyball. Open `index.html` to view it.
 
-It has a donate section with Venmo and Zelle QR codes, sponsor levels and logos, photos, coaches, the roster and the schedule.
+It has a donate section with a Venmo QR code, sponsor levels and logos, photos, coaches, the roster and the schedule.
 
 ## Updating donations and the goal
 
@@ -20,7 +20,7 @@ The PIN is set at the top of `functions/api/treasurer.js` and is visible to anyo
 
 - `assets/mv-logo.svg`: stand-in Mustangs crest. Replace with the official Monte Vista logo.
 - `assets/photos/photo-1.svg` … `photo-6.svg`: illustrated volleyball scenes. Replace with team photos.
-- `assets/qr-venmo.svg`, `assets/qr-zelle.svg`: sample codes that do not scan. Replace with the real QR codes.
+- `assets/qr-venmo.svg`: sample code that does not scan. Replace with the real Venmo QR code.
 - `assets/sponsors/*.svg`: sponsor logo slots.
 - Names, schedule and payment handles live in `tools/content.py`.
 - `donations.yml` starts with sample donors. Replace them with the real ones.
