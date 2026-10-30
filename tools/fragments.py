@@ -24,7 +24,7 @@ def qr_pair(cls="qr"):
     <figcaption><strong>Venmo</strong><span>{VENMO}</span></figcaption>
   </figure>
 </div>
-<p class="{cls}-note">Please add “MV Boys Volleyball” and your name in the payment note.</p>"""
+<p class="{cls}-note">Please add “Monte Vista Volleyball Program” and your name in the payment note.</p>"""
 
 
 def uses(cls="uses"):
