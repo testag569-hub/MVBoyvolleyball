@@ -24,7 +24,7 @@ h2{color:#ffcf3f;font-size:1.4rem}
 .periods{display:flex;justify-content:center;gap:28px;font-family:Orbitron;font-size:.8rem;flex-wrap:wrap}.periods b{display:block;font-size:1.6rem;color:#ffcf3f}
 .progress-track{height:14px;background:#222;border:2px solid #444;margin:8px 0}.progress-fill{height:100%;background:repeating-linear-gradient(90deg,#ff2a44 0 10px,#C8102E 10px 14px)}.progress-nums,.progress-meta{display:none}
 .nav{display:flex;justify-content:center;gap:4px;flex-wrap:wrap;margin-top:18px}.nav a{font-family:Orbitron;font-size:.7rem;padding:8px 12px;background:#222;text-decoration:none;border-radius:4px}.nav a:hover{background:#C8102E}
-.give-head{display:flex;align-items:center;gap:12px}.give-head img{height:2.2em;width:auto}.donate{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.qr{align-items:center;flex-wrap:nowrap}.qr-mascot{flex:1 1 140px;min-width:0;max-width:220px;width:100%;height:auto}.donate{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
 .amounts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}.amounts-btn{font-family:Orbitron;text-align:center;background:#C8102E;padding:14px 0;text-decoration:none;border-radius:6px;border-bottom:4px solid #7a0a1c}
 .qr-card{background:#0a0a0a;padding:12px;border:2px solid #333;border-radius:8px}
 .uses{list-style:none;padding:0}.uses li{display:flex;gap:14px;padding:12px;background:#222;margin-bottom:8px;border-radius:6px}.uses p{margin:0;opacity:.7;font-size:.9rem}
@@ -49,7 +49,7 @@ h2{color:#ffcf3f;font-size:1.4rem}
  <p class="fund-error" data-fund="error" hidden>Fundraiser totals could not be loaded. Check donations.yml.</p>
  {nav(items=("Sponsors","Coaches","Photos","Schedule","Supporters"))}
 </section>
-<section class="wrap"><div class="donate"><div><h2>PICK YOUR DONATION</h2>{amounts()}{uses()}</div><div><h2 class="give-head">Scan to give <img src="{HORSE}" alt="Mustang"></h2>{qr_pair()}</div></div></section>
+<section class="wrap"><div class="donate"><div><h2>PICK YOUR DONATION</h2>{amounts()}{uses()}</div><div><h2>Scan to give</h2>{qr_pair()}</div></div></section>
 <section class="wrap" id="sponsors"><h2>Sponsors</h2>{tiers()}{sponsors()}</section>
 <section class="wrap" id="coaches"><h2>Coaching staff</h2>{coaches()}</section>
 <section class="wrap" id="photos"><h2>Replay</h2>{photos()}</section>

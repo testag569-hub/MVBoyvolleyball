@@ -23,6 +23,7 @@ def qr_pair(cls="qr"):
     <img src="{QR_VENMO}" alt="Venmo QR code (placeholder)">
     <figcaption><strong>Venmo</strong><span>{VENMO}</span></figcaption>
   </figure>
+  <img class="{cls}-mascot" src="{HORSE}" alt="Monte Vista Mustang">
 </div>
 <p class="{cls}-note">Please add “Monte Vista Volleyball Program” and your name in the payment note.</p>"""
 
